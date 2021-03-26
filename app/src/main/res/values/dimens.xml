@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="gutterSpaceHalf">8dp</dimen>
+    <dimen name="gutterSpace">16dp</dimen>
+    <dimen name="image_size">160dp</dimen>
+    <dimen name="image_size_height">270dp</dimen>
+    <dimen name="image_width_landscape">360dp</dimen>
+</resources>
