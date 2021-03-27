@@ -31,12 +31,6 @@ buildscript {
         okhttp_version = '3.14.9'
         glide_version = '4.11.0'
 
-        // ImageView with zoom
-        photoview_version = '2.3.0'
-
-        //di
-        hilt_version = '2.31.2-alpha'
-
         //ExoPlayer
         exo_player_version = '2.11.3'
 
