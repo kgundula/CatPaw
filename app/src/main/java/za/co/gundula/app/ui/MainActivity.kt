@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         catViewModel.allCats.observe(this) { cats ->
             val adapter = CatsListRecyclerViewAdapter(cats)
             adapter.getClickedCatSubject().subscribe { cat_id ->
-                //open details activity
+                startActivity(CatDetailsActivity.getStartIntent(this, cat_id))
             }
             recyclerView.adapter = adapter
 

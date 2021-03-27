@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.CatDetailsActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/cat_image"
+        android:layout_width="@dimen/image_width_landscape"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/cat_title"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/gutterSpaceHalf"
+        android:layout_marginTop="@dimen/gutterSpaceHalf"
+        android:layout_marginEnd="@dimen/gutterSpaceHalf"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cat_image"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Cat Title" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/cat_description"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/gutterSpaceHalf"
+        android:layout_marginTop="@dimen/gutterSpaceHalf"
+        android:layout_marginEnd="@dimen/gutterSpaceHalf"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cat_image"
+        app:layout_constraintTop_toBottomOf="@id/cat_title"
+        tools:text="Some Random text description" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
