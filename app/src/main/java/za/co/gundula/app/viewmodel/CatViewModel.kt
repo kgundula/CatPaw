@@ -1,5 +1,6 @@
 package za.co.gundula.app.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -13,20 +14,19 @@ import za.co.gundula.app.repository.CatRepository
 class CatViewModel(private val repository: CatRepository) : ViewModel() {
 
     private lateinit var catApi : CatApi
+    private var isNetworkEnabled : Boolean = false
 
-    fun init() {
+    fun init(isConnected: Boolean) {
         catApi = NetworkService.getCatService();
+        this.isNetworkEnabled = isConnected
         loadCats()
     }
 
     private fun loadCats() {
         //if database has no cats objects then do a network call.
         allCats.observeForever(Observer { cats ->
-            if (cats.isEmpty()) {
-                catApi.getCats()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(this::handleResponse)
+            if (cats.isEmpty() && isNetworkEnabled) {
+                fetchCatsPictures()
                 println("Database is loaded with new data")
             } else {
                 println("Database already loaded with data")
@@ -41,8 +41,15 @@ class CatViewModel(private val repository: CatRepository) : ViewModel() {
         repository.insert(cat)
     }
 
-    private fun handleResponse(catsList: List<CatRemoteModel>): Unit {
+    private fun fetchCatsPictures() {
+        catApi.getCats()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnError(this::handleOnError)
+            .subscribe(this::handleResponse)
+    }
 
+    private fun handleResponse(catsList: List<CatRemoteModel>) {
         var catNumber = 1
         catsList.forEach {
             val catTitle = "Cat $catNumber"
@@ -54,4 +61,10 @@ class CatViewModel(private val repository: CatRepository) : ViewModel() {
         }
     }
 
+    private fun handleOnError(throwable: Throwable) {
+        Log.i("Network error", throwable.localizedMessage)
+    }
+
+
 }
+

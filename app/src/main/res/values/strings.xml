@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CatPaw</string>
+    <string name="network_toast">Uh-oh! This app requires an internet connection, Please enable wifi or mobile data</string>
 </resources>
